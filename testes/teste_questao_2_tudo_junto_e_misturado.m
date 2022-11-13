@@ -7,7 +7,7 @@ addpath 'E:\Repositories Github\electric_machines\utils'
 %vl = 13800; % tensão de linha do GS
 S = 50000000; % potência aparente do GS
 Xs = 2.5; % reatância síncrona do GS
-Ra = 0.2; % resistência de armadura do GS
+Ra = 0;%0.2; % resistência de armadura do GS
 fp = 0.9; % fator de potência (atrasado)
 fp_estado = 'i'; % i - indutivo e c-capacitivo
 ligacao = 'y'; % y - ligacao Y e d - ligacao delta
@@ -15,7 +15,7 @@ num_polos = 4; % Número de polos da máquina.
 freq_ele = 60; % frequência elétrica em Hz.
 
 % esse arquivo será importado no dashboard
-If_x_Vt = readtable('../caracteristica_a_vazio_gs.csv');
+If_x_Vt = readtable('./caracteristica_a_vazio_gs.csv');
 s = size(If_x_Vt.VT);
 
 figure;
@@ -86,6 +86,7 @@ for c = 8:s(1)
     %compass(Ea,'-.','r')
 
     %break
+    pause
 
 end
 
