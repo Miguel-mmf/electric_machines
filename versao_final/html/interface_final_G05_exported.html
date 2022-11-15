@@ -1,0 +1,1918 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>interface_final_G05_exported</title><meta name="generator" content="MATLAB 9.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2022-11-15"><meta name="DC.source" content="interface_final_G05_exported.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Corrente de Armadura</a></li><li><a href="#3">Corrente de Linha</a></li><li><a href="#4">Tens&atilde;o Induzida</a></li><li><a href="#7">Plot Tens&atilde;o Induzida Interna Ea</a></li><li><a href="#8">Plot Tens&atilde;o de Fase Vp</a></li><li><a href="#9">Plot Corrente de Armadura Ia</a></li><li><a href="#10">Plot Resist&ecirc;ncia de Armadura RaIa</a></li><li><a href="#11">Plot Reat&acirc;ncia S&iacute;ncrona jXsIa</a></li><li><a href="#13">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</a></li><li><a href="#14">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</a></li><li><a href="#17">Inicializa&ccedil;&atilde;o Geral</a></li><li><a href="#20">Configura&ccedil;&atilde;o de bot&otilde;es</a></li><li><a href="#21">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</a></li><li><a href="#22">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</a></li><li><a href="#24">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</a></li><li><a href="#25">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</a></li></ul></div><pre class="codeinput"><span class="keyword">classdef</span> interface_final_G05_exported &lt; matlab.apps.AppBase
+
+    <span class="comment">% Properties that correspond to app components</span>
+    <span class="keyword">properties</span> (Access = public)
+        UIFigure                        <span class="typesection">matlab.ui.Figure</span>
+        GridLayout                      <span class="typesection">matlab.ui.container.GridLayout</span>
+        LeftPanel                       <span class="typesection">matlab.ui.container.Panel</span>
+        VelocidadedeRotacoRotaesporMinutorpmEditField  <span class="typesection">matlab.ui.control.NumericEditField</span>
+        VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel  <span class="typesection">matlab.ui.control.Label</span>
+        InformaesdoGeradorSncronoLabel  <span class="typesection">matlab.ui.control.Label</span>
+        Vazio                           <span class="typesection">matlab.ui.container.ButtonGroup</span>
+        Procurar                        <span class="typesection">matlab.ui.control.Button</span>
+        TensaoTerminal                  <span class="typesection">matlab.ui.control.NumericEditField</span>
+        FrequenciadaRedeLabel           <span class="typesection">matlab.ui.control.Label</span>
+        ReatanciaSincrona               <span class="typesection">matlab.ui.control.NumericEditField</span>
+        ReatanciaSincronaLabel          <span class="typesection">matlab.ui.control.Label</span>
+        ResistenciadeArmadura           <span class="typesection">matlab.ui.control.NumericEditField</span>
+        ResistnciadeArmaduraLabel       <span class="typesection">matlab.ui.control.Label</span>
+        NumerodePolos                   <span class="typesection">matlab.ui.control.NumericEditField</span>
+        NumerodePolosEditFieldLabel     <span class="typesection">matlab.ui.control.Label</span>
+        TipodeFP                        <span class="typesection">matlab.ui.container.ButtonGroup</span>
+        Capacitivo                      <span class="typesection">matlab.ui.control.RadioButton</span>
+        Indutivo                        <span class="typesection">matlab.ui.control.RadioButton</span>
+        FP                              <span class="typesection">matlab.ui.control.NumericEditField</span>
+        FPEditFieldLabel                <span class="typesection">matlab.ui.control.Label</span>
+        TipodeLigacao                   <span class="typesection">matlab.ui.container.ButtonGroup</span>
+        Delta                           <span class="typesection">matlab.ui.control.RadioButton</span>
+        Y                               <span class="typesection">matlab.ui.control.RadioButton</span>
+        PotenciaAparente                <span class="typesection">matlab.ui.control.NumericEditField</span>
+        PotenciaAparenteMVaLabel        <span class="typesection">matlab.ui.control.Label</span>
+        CaracteristicaAVazio            <span class="typesection">matlab.ui.control.UIAxes</span>
+        CenterPanel                     <span class="typesection">matlab.ui.container.Panel</span>
+        TensodeTerminalpu_q01           <span class="typesection">matlab.ui.control.NumericEditField</span>
+        TensoInternaEapuLabel           <span class="typesection">matlab.ui.control.Label</span>
+        CorrentedeCampopu_q01           <span class="typesection">matlab.ui.control.NumericEditField</span>
+        CorrentedeCampopuEditFieldLabel  <span class="typesection">matlab.ui.control.Label</span>
+        CorrentedeArmadurapu_q01        <span class="typesection">matlab.ui.control.NumericEditField</span>
+        CorrentedeArmaduraLabel         <span class="typesection">matlab.ui.control.Label</span>
+        LimparGrafico2_q01              <span class="typesection">matlab.ui.control.Button</span>
+        PorcentagemdeCarga_q01          <span class="typesection">matlab.ui.control.Spinner</span>
+        PorcentagemdeCargaSpinnerLabel  <span class="typesection">matlab.ui.control.Label</span>
+        Questo1Label                    <span class="typesection">matlab.ui.control.Label</span>
+        Grafico2_q01                    <span class="typesection">matlab.ui.control.UIAxes</span>
+        Grafico1_q01                    <span class="typesection">matlab.ui.control.UIAxes</span>
+        RightPanel                      <span class="typesection">matlab.ui.container.Panel</span>
+        CorrentedeCampopu_q02           <span class="typesection">matlab.ui.control.NumericEditField</span>
+        CorrentedeCampopuEditField_2Label  <span class="typesection">matlab.ui.control.Label</span>
+        TensodeTerminalpu_q02           <span class="typesection">matlab.ui.control.NumericEditField</span>
+        TensodeTerminalpuEditFieldLabel_2  <span class="typesection">matlab.ui.control.Label</span>
+        CorrentedeArmadurapu_q02        <span class="typesection">matlab.ui.control.NumericEditField</span>
+        CorrentedeArmaduraLabel_2       <span class="typesection">matlab.ui.control.Label</span>
+        LimparGrafico1_q01              <span class="typesection">matlab.ui.control.Button</span>
+        CorrentedeCampoA_q02            <span class="typesection">matlab.ui.control.Spinner</span>
+        CorrentedeCampoASpinner_2Label  <span class="typesection">matlab.ui.control.Label</span>
+        Questo2Label                    <span class="typesection">matlab.ui.control.Label</span>
+        Grafico1_q02                    <span class="typesection">matlab.ui.control.UIAxes</span>
+        Grafico2_q02                    <span class="typesection">matlab.ui.control.UIAxes</span>
+    <span class="keyword">end</span>
+
+    <span class="comment">% Properties that correspond to apps with auto-reflow</span>
+    <span class="keyword">properties</span> (Access = private)
+        onePanelWidth = 576;
+        twoPanelWidth = 768;
+    <span class="keyword">end</span>
+
+
+    <span class="keyword">properties</span> (Access = public)
+        File;
+        If_x_Vt;
+        poli_If_x_Vt_inv;
+        Ea_temp;
+        jXsIa_temp;
+    <span class="keyword">end</span>
+
+    <span class="keyword">properties</span> (Access = private)
+        pot_aparente; <span class="comment">% pot&ecirc;ncia aparente do GS</span>
+        Xs; <span class="comment">% reat&acirc;ncia s&iacute;ncrona do GS</span>
+        Ra; <span class="comment">% resist&ecirc;ncia de armadura do GS</span>
+        fp; <span class="comment">% fator de pot&ecirc;ncia (atrasado)</span>
+        fp_estado; <span class="comment">% i - indutivo e c-capacitivo</span>
+        ligacao; <span class="comment">% y - ligacao Y e d - ligacao delta</span>
+        num_polos; <span class="comment">% N&uacute;mero de polos da m&aacute;quina.</span>
+        freq_ele; <span class="comment">% frequ&ecirc;ncia el&eacute;trica em Hz.</span>
+        Vt;
+        Vp;
+        Vl;
+        Ic_ref;
+        Ia_ref;
+        Il_ref;
+        Ea_ref;
+        <span class="comment">%Ea_ref_comp;</span>
+        Ia_pu_q01;
+        Il_pu_q01;
+        Ea_pu_q01;
+        Ia_pu_q02;
+        Il_pu_q02;
+        Ea_pu_q02;
+    <span class="keyword">end</span>
+
+
+    <span class="keyword">methods</span> (Access = public)
+
+        <span class="keyword">function</span> calc_op_nominal_gs( <span class="keyword">...</span>
+            app, <span class="keyword">...</span>
+            tensao_linha <span class="keyword">...</span>
+        )
+            <span class="keyword">if</span> app.fp_estado == <span class="string">"Indutivo"</span>
+                Ia_phase = -1*acosd(app.fp);
+            <span class="keyword">end</span>
+            <span class="keyword">if</span> app.fp_estado == <span class="string">"Capacitivo"</span>
+                Ia_phase = abs(acosd(app.fp));
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> app.ligacao == <span class="string">'Y'</span>
+                app.Ia_ref = app.pot_aparente/(sqrt(3)*tensao_linha);
+                app.Ia_ref = app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase);
+                app.Il_ref = app.Ia_ref;
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> app.ligacao == <span class="string">"Delta"</span>
+                app.Ia_ref = app.pot_aparente/(3*tensao_linha);
+                app.Ia_ref = app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase);
+                app.Il_ref = app.Ia_ref*sqrt(3);
+            <span class="keyword">end</span>
+
+            app.Ea_ref = app.Vp + 1i*app.Xs*app.Ia_ref;
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> calc_tensao_fase(app)
+
+            <span class="keyword">if</span> app.ligacao == <span class="string">'Y'</span>
+                app.Vp = app.Vt/sqrt(3);
+                app.Vl = app.Vt;
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> app.ligacao == <span class="string">"Delta"</span>
+                app.Vp = app.Vt;
+                app.Vl = app.Vt;
+            <span class="keyword">end</span>
+
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> [Ea,jXsIa] = calc_tensao_induzida( <span class="keyword">...</span>
+                app, <span class="keyword">...</span>
+                tensao_fase, <span class="keyword">...</span>
+                tensao_fase_angle <span class="keyword">...</span>
+              )
+
+            jXsIa= 1i*app.Xs*app.Ia_ref; <span class="comment">%1i*app.Xs*(Ia*cosd(Ia_phase)+ 1i*Ia*sind(Ia_phase));</span>
+            Ea = tensao_fase*cosd(tensao_fase_angle) + 1i*tensao_fase*sind(tensao_fase_angle) + jXsIa; <span class="comment">%+ app.Ra*(Ia*cosd(Ia_phase)+ 1i*Ia*sind(Ia_phase));</span>
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> [Ia_pu,Il_pu,Ea_pu] = calc_gs_pu( <span class="keyword">...</span>
+            app,<span class="keyword">...</span>
+            Ia, <span class="keyword">...</span>
+            Il, <span class="keyword">...</span>
+            Ea <span class="keyword">...</span>
+            )
+</pre><h2 id="2">Corrente de Armadura</h2><pre class="codeinput">            Ia_pu = abs(Ia)/abs(app.Ia_ref);
+</pre><h2 id="3">Corrente de Linha</h2><pre class="codeinput">            Il_pu = abs(Il)/abs(app.Il_ref);
+</pre><h2 id="4">Tens&atilde;o Induzida</h2><pre class="codeinput">            Ea_pu = abs(Ea)/abs(app.Ea_ref);
+</pre><pre class="codeinput">        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> gera_graficos01( <span class="keyword">...</span>
+                app, <span class="keyword">...</span>
+                ax, <span class="keyword">...</span>
+                Ea, <span class="keyword">...</span>
+                jXsIa, <span class="keyword">...</span>
+                Ia <span class="keyword">...</span>
+            )
+</pre><h2 id="7">Plot Tens&atilde;o Induzida Interna Ea</h2><pre class="codeinput">            quiver( <span class="keyword">...</span>
+                ax, <span class="keyword">...</span>
+                0*real(Ea), <span class="keyword">...</span>
+                0*imag(Ea), <span class="keyword">...</span>
+                real(Ea), <span class="keyword">...</span>
+                imag(Ea), <span class="keyword">...</span>
+                0, <span class="keyword">...</span>
+                <span class="string">'g'</span>, <span class="keyword">...</span>
+                <span class="string">'LineWidth'</span>,<span class="keyword">...</span>
+                2 <span class="keyword">...</span>
+            );
+            hold(ax,<span class="string">'on'</span>);
+</pre><img vspace="5" hspace="5" src="interface_final_G05_exported_01.png" alt=""> <img vspace="5" hspace="5" src="interface_final_G05_exported_05.png" alt=""> <h2 id="8">Plot Tens&atilde;o de Fase Vp</h2><pre class="codeinput">            quiver(ax,0*app.Vp,0*app.Vp,app.Vp,0*app.Vp,0,<span class="string">'b'</span>,<span class="string">'LineWidth'</span>,2);
+</pre><img vspace="5" hspace="5" src="interface_final_G05_exported_02.png" alt=""> <img vspace="5" hspace="5" src="interface_final_G05_exported_06.png" alt=""> <h2 id="9">Plot Corrente de Armadura Ia</h2><pre class="codeinput">            quiver( <span class="keyword">...</span>
+                ax, <span class="keyword">...</span>
+                0*app.Vp, <span class="keyword">...</span>
+                0*app.Vp, <span class="keyword">...</span>
+                real(Ia), <span class="keyword">...</span>
+                imag(Ia), <span class="keyword">...</span>
+                0, <span class="keyword">...</span>
+                <span class="string">'r'</span>, <span class="keyword">...</span>
+                <span class="string">'LineWidth'</span>,<span class="keyword">...</span>
+                2 <span class="keyword">...</span>
+             );
+</pre><img vspace="5" hspace="5" src="interface_final_G05_exported_03.png" alt=""> <img vspace="5" hspace="5" src="interface_final_G05_exported_07.png" alt=""> <h2 id="10">Plot Resist&ecirc;ncia de Armadura RaIa</h2><pre>           quiver( ...
+               ax, ...
+               app.Vp, ...
+               0*app.Vp, ...
+               app.Ra*real(Ia), ...
+               imag(app.Ra*1i*imag(Ia)), ...
+               0, ...
+               'y', ...
+               'LineWidth',...
+               2 ...
+            );</pre><h2 id="11">Plot Reat&acirc;ncia S&iacute;ncrona jXsIa</h2><pre class="codeinput">            quiver( <span class="keyword">...</span>
+                ax, <span class="keyword">...</span>
+                app.Vp, <span class="keyword">...</span>
+                0, <span class="keyword">...</span>
+                real(jXsIa), <span class="keyword">...</span>
+                imag(jXsIa), <span class="keyword">...</span>
+                0, <span class="keyword">...</span>
+                <span class="string">'m'</span>, <span class="keyword">...</span>
+                <span class="string">'LineWidth'</span>,<span class="keyword">...</span>
+                2 <span class="keyword">...</span>
+            );
+<span class="comment">%             quiver( ...</span>
+<span class="comment">%                 ax, ...</span>
+<span class="comment">%                 app.Vp+app.Ra*real(Ia), ...</span>
+<span class="comment">%                 imag(app.Ra*1i*imag(Ia)), ...</span>
+<span class="comment">%                 real(jXsIa), ...</span>
+<span class="comment">%                 imag(jXsIa), ...</span>
+<span class="comment">%                 0, ...</span>
+<span class="comment">%                 'm', ...</span>
+<span class="comment">%                 'LineWidth',...</span>
+<span class="comment">%                 2 ...</span>
+<span class="comment">%             );</span>
+            <span class="comment">%quiver(app.Grafico1_q01,app.Vp,0*app.Vp,abs(jXsIa),imag(jXsIa),0,'m');</span>
+
+            <span class="comment">%legend(ax,'Ea','Vp','Ia','jXsIa','Location','southeast');</span>
+
+            legend( <span class="keyword">...</span>
+                ax, <span class="keyword">...</span>
+                sprintf(<span class="string">'Ea (%0.2f / %0.2f&deg;)'</span>,abs(Ea),rad2deg(angle(Ea))), <span class="keyword">...</span>
+                sprintf(<span class="string">'Vp (%0.2f / %0.2f&deg;)'</span>,abs(app.Vp),rad2deg(angle(app.Vp))), <span class="keyword">...</span>
+                sprintf(<span class="string">'Ia (%0.2f / %0.2f&deg;)'</span>,abs(Ia),rad2deg(angle(Ia))), <span class="keyword">...</span>
+                sprintf(<span class="string">'jXsIa (%0.2f / %0.2f&deg;)'</span>,abs(jXsIa),rad2deg(angle(jXsIa))) <span class="keyword">...</span>
+            );
+            legend(ax,<span class="string">'boxoff'</span>);
+<span class="comment">%             text(ax,0,0,sprintf('Ea (%0.2f/%0.2f&deg;)',abs(Ea),rad2deg(angle(Ea))));</span>
+</pre><img vspace="5" hspace="5" src="interface_final_G05_exported_04.png" alt=""> <img vspace="5" hspace="5" src="interface_final_G05_exported_08.png" alt=""> <pre class="codeinput">        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> Il_novo = calc_corrente_linha( <span class="keyword">...</span>
+                app, <span class="keyword">...</span>
+                Ia <span class="keyword">...</span>
+                )
+            <span class="keyword">if</span> app.ligacao == <span class="string">'Y'</span>
+                Il_novo = Ia;
+            <span class="keyword">end</span>
+
+            <span class="keyword">if</span> app.ligacao == <span class="string">"Delta"</span>
+                Il_novo = Ia*sqrt(3);
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> inicial(app, Ea, jXsIa)
+</pre><h2 id="13">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</h2><pre class="codeinput">            app.PorcentagemdeCarga_q01.Value = 100;
+            app.CorrentedeCampoA_q02.Value = 3.5;
+
+            app.gera_graficos01(app.Grafico1_q01,Ea,jXsIa,app.Ia_ref);
+            legend(app.Grafico1_q01,<span class="string">'Location'</span>,<span class="string">'northwest'</span>);
+
+            [app.Ia_pu_q01,app.Il_pu_q01,app.Ea_pu_q01] = app.calc_gs_pu(app.Ia_ref,app.Il_ref,app.Ea_ref);
+            app.CorrentedeArmadurapu_q01.Value = app.Ia_pu_q01;
+            app.CorrentedeCampopu_q01.Value = app.Il_pu_q01;
+            app.TensodeTerminalpu_q01.Value = app.Ea_pu_q01;
+</pre><h2 id="14">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</h2><pre class="codeinput">            app.gera_graficos01(app.Grafico1_q02,Ea,jXsIa, app.Ia_ref);<span class="comment">%(app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase)));</span>
+            legend(app.Grafico1_q02,<span class="string">'Location'</span>,<span class="string">'northwest'</span>);
+
+            [app.Ia_pu_q02,app.Il_pu_q02,app.Ea_pu_q02] = app.calc_gs_pu(app.Ia_ref,app.Il_ref,app.Ea_ref);
+            app.CorrentedeArmadurapu_q02.Value = app.Ia_pu_q02;
+            app.CorrentedeCampopu_q02.Value = app.Il_pu_q02;
+            app.TensodeTerminalpu_q02.Value = app.Ea_pu_q02;
+</pre><pre class="codeinput">        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> questao1(app)
+
+            y = asind(((app.pot_aparente*app.PorcentagemdeCarga_q01.Value/100)*app.fp*app.Xs)/(3*app.Vp*abs(app.Ea_ref)));
+            Ea_novo = abs(app.Ea_ref)*cosd(y) + 1i*abs(app.Ea_ref)*sind(y);
+
+            <span class="comment">% Calculo do Ia</span>
+            Ia_novo = (Ea_novo - app.Vp)/(1i*app.Xs);
+
+            <span class="comment">% Calculo jXsIa</span>
+            jXsIa_novo = Ia_novo*(1i*app.Xs);
+
+            <span class="comment">% Calculo do FP</span>
+            fp_novo = cos(angle(Ia_novo));
+
+            <span class="comment">% Calculo da Il</span>
+            Il_novo = app.calc_corrente_linha(Ia_novo);
+
+            <span class="comment">% Gr&aacute;fico 1 - Quest&atilde;o 1</span>
+            cla(app.Grafico1_q01);
+            app.gera_graficos01(app.Grafico1_q01,Ea_novo,jXsIa_novo,Ia_novo);
+            legend(app.Grafico1_q01,<span class="string">'Location'</span>,<span class="string">'northwest'</span>);
+            legend(app.Grafico2_q01,<span class="string">'Location'</span>,<span class="string">'northwest'</span>);
+
+            <span class="comment">% Gr&aacute;fico 2 - Quest&atilde;o 1</span>
+            app.gera_graficos01(app.Grafico2_q01,Ea_novo,jXsIa_novo,Ia_novo);
+            title(app.Grafico1_q01,sprintf(<span class="string">'Diagrama Fasorial - FP: %0.2f'</span>,fp_novo));
+            title(app.Grafico2_q01,<span class="string">'Diagramas Fasoriais - Varia&ccedil;&atilde;o de Carga'</span>);
+
+            raio = abs(Ea_novo);
+            x = (raio-2):0.01:raio;
+            y = sqrt(raio^2 - x.^2);
+
+            plot(app.Grafico2_q01,x,y,<span class="string">'LineWidth'</span>,1.5,<span class="string">'Color'</span>,<span class="string">'black'</span>,<span class="string">'DisplayName'</span>,<span class="string">'Arco'</span>);
+
+            [app.Ia_pu_q01,app.Il_pu_q01,app.Ea_pu_q01] = app.calc_gs_pu(Ia_novo,Il_novo,Ea_novo);
+            app.CorrentedeArmadurapu_q01.Value = app.Ia_pu_q01;
+            app.CorrentedeCampopu_q01.Value = app.Il_pu_q01;
+            app.TensodeTerminalpu_q01.Value = app.Ea_pu_q01;
+
+        <span class="keyword">end</span>
+
+        <span class="keyword">function</span> questao2(app)
+            <span class="comment">% Valor da Corrente de Campo Nominal</span>
+            app.poli_If_x_Vt_inv = polyfit(app.If_x_Vt.Value.VT,app.If_x_Vt.Value.IF, 4);
+            app.Ic_ref = polyval(app.poli_If_x_Vt_inv, app.Vt*1000);
+
+            <span class="comment">% calculo Ea</span>
+            Ea_novo = abs(app.Ea_ref)*(app.CorrentedeCampoA_q02.Value/app.Ic_ref);
+            y = asind((abs(app.Ea_ref)/abs(Ea_novo))*sin(angle(app.Ea_ref)));
+            Ea_novo = Ea_novo*cosd(y) + 1i*Ea_novo*sind(y);
+            <span class="comment">% Calculo do Ia</span>
+            Ia_novo = (Ea_novo - app.Vp)/(1i*app.Xs);
+            <span class="comment">% Calculo jXsIa</span>
+            jXsIa_novo = Ia_novo*(1i*app.Xs);
+            <span class="comment">% Calculo do FP</span>
+            fp_novo = cos(angle(Ia_novo));
+            <span class="comment">% Calculo da Il</span>
+            Il_novo = app.calc_corrente_linha(Ia_novo);
+            <span class="comment">% Gr&aacute;fico 1 - Quest&atilde;o 2</span>
+            cla(app.Grafico1_q02);
+            app.gera_graficos01(app.Grafico1_q02,Ea_novo,jXsIa_novo,Ia_novo);
+
+            <span class="comment">% Gr&aacute;fico 2 - Quest&atilde;o 2</span>
+            app.gera_graficos01(app.Grafico2_q02,Ea_novo,jXsIa_novo,Ia_novo);
+            title(app.Grafico1_q02,sprintf(<span class="string">'Diagrama Fasorial - FP: %0.2f'</span>,fp_novo));
+            title(app.Grafico2_q02,<span class="string">'Diagramas Fasoriais - Varia&ccedil;&atilde;o da Corrente de Campo (IF)'</span>);
+            legend(app.Grafico1_q02,<span class="string">'Location'</span>,<span class="string">'southeast'</span>);
+            legend(app.Grafico2_q02,<span class="string">'Location'</span>,<span class="string">'southeast'</span>);
+
+            x = real(app.Ea_ref):0.01:(real(app.Ea_ref)+25);
+            c = imag(Ea_novo);
+            const = @(x)(c).*x.^(0);
+
+            plot(app.Grafico2_q02,x,const(x),<span class="string">'LineWidth'</span>,1.5,<span class="string">'Color'</span>,<span class="string">'black'</span>,<span class="string">'DisplayName'</span>,<span class="string">'Reta'</span>);
+
+            [app.Ia_pu_q02,app.Il_pu_q02,app.Ea_pu_q02] = app.calc_gs_pu(Ia_novo,Il_novo,Ea_novo);
+            app.CorrentedeArmadurapu_q02.Value = app.Ia_pu_q02;
+            app.CorrentedeCampopu_q02.Value = app.Il_pu_q02;
+            app.TensodeTerminalpu_q02.Value = app.Ea_pu_q02;
+
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+    <span class="comment">%end</span>
+
+    <span class="comment">% Callbacks that handle component events</span>
+    methods (Access = private)
+
+        <span class="comment">% Code that executes after component creation</span>
+        <span class="keyword">function</span> startupFcn(app)
+</pre><pre class="codeinput">            app.pot_aparente = app.PotenciaAparente.Value; <span class="comment">% pot&ecirc;ncia aparente do GS</span>
+            app.Xs = app.ReatanciaSincrona.Value; <span class="comment">% reat&acirc;ncia s&iacute;ncrona do GS</span>
+            app.Ra = app.ResistenciadeArmadura.Value; <span class="comment">% resist&ecirc;ncia de armadura do GS</span>
+            app.fp = app.FP.Value; <span class="comment">% fator de pot&ecirc;ncia</span>
+            app.fp_estado = app.TipodeFP.SelectedObject.Text; <span class="comment">% i - indutivo e c-capacitivo</span>
+            app.ligacao = app.TipodeLigacao.SelectedObject.Text; <span class="comment">% y - ligacao Y e d - ligacao delta</span>
+            app.Vt = app.TensaoTerminal.Value; <span class="comment">% tens&atilde;o de terminal do GS</span>
+            app.num_polos = app.NumerodePolos.Value; <span class="comment">% N&uacute;mero de polos da m&aacute;quina.</span>
+            app.freq_ele = 60;
+</pre><h2 id="17">Inicializa&ccedil;&atilde;o Geral</h2><pre class="codeinput">            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Value = (app.freq_ele*120)/app.num_polos;
+            app.calc_tensao_fase();
+            app.calc_op_nominal_gs(app.Vt);
+
+            [Ea,jXsIa]  = app.calc_tensao_induzida( <span class="keyword">...</span>
+                app.Vp, <span class="keyword">...</span>
+                0 <span class="keyword">...</span>
+             );
+
+            app.inicial(Ea, jXsIa);
+            title(app.Grafico1_q01, <span class="string">"Diagrama Fasorial na carga nominal"</span>);
+            title(app.Grafico1_q02, <span class="string">"Diagrama Fasorial com valores nominais"</span>);
+</pre><img vspace="5" hspace="5" src="interface_final_G05_exported_09.png" alt=""> <pre class="codeinput">        <span class="keyword">end</span>
+
+        <span class="comment">% Button pushed function: Procurar</span>
+        <span class="keyword">function</span> ProcurarButtonPushed(app, event)
+</pre><pre class="codeinput">            [file,fpath] = uigetfile(<span class="string">'./*.csv'</span>);
+            app.File.Value = [fpath,file];
+            ds = datastore(app.File.Value);
+
+            app.If_x_Vt.Value = readall(ds);
+
+            x = 0:0.01:10;
+            poli_If_x_Vt = polyfit(app.If_x_Vt.Value.IF,app.If_x_Vt.Value.VT, 4);
+            f = polyval(poli_If_x_Vt , x);
+
+            cla(app.Grafico1_q01);
+            cla(app.Grafico2_q01);
+            cla(app.Grafico1_q02);
+            cla(app.Grafico2_q02);
+
+            plot( <span class="keyword">...</span>
+                app.CaracteristicaAVazio, <span class="keyword">...</span>
+                app.If_x_Vt.Value.IF, <span class="keyword">...</span>
+                app.If_x_Vt.Value.VT, <span class="keyword">...</span>
+                <span class="string">"Color"</span>,<span class="string">"b"</span>, <span class="keyword">...</span>
+                <span class="string">'Marker'</span>,<span class="string">'o'</span>);
+            hold(app.CaracteristicaAVazio,<span class="string">'on'</span>);
+            plot( <span class="keyword">...</span>
+                app.CaracteristicaAVazio, <span class="keyword">...</span>
+                x, <span class="keyword">...</span>
+                f, <span class="keyword">...</span>
+                <span class="string">"Color"</span>,<span class="string">"r"</span>, <span class="keyword">...</span>
+                <span class="string">'LineStyle'</span>,<span class="string">'-'</span>, <span class="keyword">...</span>
+                <span class="string">'LineWidth'</span>,1.5 <span class="keyword">...</span>
+            );
+            grid(app.CaracteristicaAVazio,<span class="string">'on'</span>);
+</pre><h2 id="20">Configura&ccedil;&atilde;o de bot&otilde;es</h2><pre class="codeinput">            app.PorcentagemdeCarga_q01.Value = 60;
+            app.CorrentedeCampoA_q02.Value = 6;
+            app.CorrentedeCampoA_q02.Limits = [min(app.If_x_Vt.Value.IF) max(app.If_x_Vt.Value.IF)];
+</pre><h2 id="21">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</h2><pre class="codeinput">            app.questao1();
+</pre><h2 id="22">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</h2><pre class="codeinput">            app.questao2();
+</pre><pre class="codeinput">        <span class="keyword">end</span>
+
+        <span class="comment">% Value changed function: NumerodePolos</span>
+        <span class="keyword">function</span> NumerodePolosValueChanged(app, event)
+            value = app.NumerodePolos.Value;
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Value = (app.freq_ele*120)/value;
+        <span class="keyword">end</span>
+
+        <span class="comment">% Callback function: FP, PotenciaAparente, ReatanciaSincrona,</span>
+        <span class="comment">% ...and 4 other components</span>
+        <span class="keyword">function</span> TipodeLigacaoSelectionChanged(app, event)
+            cla(app.Grafico1_q01);
+            cla(app.Grafico2_q01);
+            cla(app.Grafico1_q02);
+            cla(app.Grafico2_q02);
+
+            app.ligacao = app.TipodeLigacao.SelectedObject.Text;
+            app.fp_estado = app.TipodeFP.SelectedObject.Text;
+            app.pot_aparente = app.PotenciaAparente.Value;
+            app.Xs = app.ReatanciaSincrona.Value;
+            app.Ra = app.ResistenciadeArmadura.Value;
+            app.fp = app.FP.Value;
+            app.Vt = app.TensaoTerminal.Value;
+            app.calc_tensao_fase();
+                app.calc_op_nominal_gs(app.Vt);
+
+                [Ea,jXsIa]  = app.calc_tensao_induzida( <span class="keyword">...</span>
+                    app.Vp, <span class="keyword">...</span>
+                    0 <span class="keyword">...</span>
+                );
+
+            <span class="keyword">try</span>
+</pre><h2 id="24">Inicializa&ccedil;&atilde;o Quest&atilde;o 2</h2><pre class="codeinput">                app.questao2();
+</pre><h2 id="25">Inicializa&ccedil;&atilde;o Quest&atilde;o 1</h2><pre class="codeinput">                app.questao1();
+</pre><pre class="codeinput">            <span class="keyword">catch</span>
+
+                app.inicial(Ea, jXsIa);
+
+                cla(app.Grafico1_q02);
+                cla(app.Grafico2_q02);
+
+            <span class="keyword">end</span>
+
+        <span class="keyword">end</span>
+
+        <span class="comment">% Button pushed function: LimparGrafico2_q01</span>
+        <span class="keyword">function</span> LimparGrafico2_q01ButtonPushed(app, event)
+            cla(app.Grafico2_q01);
+        <span class="keyword">end</span>
+
+        <span class="comment">% Button pushed function: LimparGrafico1_q01</span>
+        <span class="keyword">function</span> LimparGrafico1_q01ButtonPushed(app, event)
+            cla(app.Grafico2_q02);
+        <span class="keyword">end</span>
+
+        <span class="comment">% Value changed function: CorrentedeCampoA_q02</span>
+        <span class="keyword">function</span> CorrentedeCampoA_q02ValueChanged(app, event)
+            app.questao2();
+        <span class="keyword">end</span>
+
+        <span class="comment">% Value changed function: PorcentagemdeCarga_q01</span>
+        <span class="keyword">function</span> PorcentagemdeCarga_q01ValueChanged(app, event)
+            app.questao1();
+        <span class="keyword">end</span>
+
+        <span class="comment">% Changes arrangement of the app based on UIFigure width</span>
+        <span class="keyword">function</span> updateAppLayout(app, event)
+            currentFigureWidth = app.UIFigure.Position(3);
+            <span class="keyword">if</span>(currentFigureWidth &lt;= app.onePanelWidth)
+                <span class="comment">% Change to a 3x1 grid</span>
+                app.GridLayout.RowHeight = {599, 599, 599};
+                app.GridLayout.ColumnWidth = {<span class="string">'1x'</span>};
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = 1;
+                app.LeftPanel.Layout.Row = 2;
+                app.LeftPanel.Layout.Column = 1;
+                app.RightPanel.Layout.Row = 3;
+                app.RightPanel.Layout.Column = 1;
+            <span class="keyword">elseif</span> (currentFigureWidth &gt; app.onePanelWidth &amp;&amp; currentFigureWidth &lt;= app.twoPanelWidth)
+                <span class="comment">% Change to a 2x2 grid</span>
+                app.GridLayout.RowHeight = {599, 599};
+                app.GridLayout.ColumnWidth = {<span class="string">'1x'</span>, <span class="string">'1x'</span>};
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = [1,2];
+                app.LeftPanel.Layout.Row = 2;
+                app.LeftPanel.Layout.Column = 1;
+                app.RightPanel.Layout.Row = 2;
+                app.RightPanel.Layout.Column = 2;
+            <span class="keyword">else</span>
+                <span class="comment">% Change to a 1x3 grid</span>
+                app.GridLayout.RowHeight = {<span class="string">'1x'</span>};
+                app.GridLayout.ColumnWidth = {220, <span class="string">'1x'</span>, 433};
+                app.LeftPanel.Layout.Row = 1;
+                app.LeftPanel.Layout.Column = 1;
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = 2;
+                app.RightPanel.Layout.Row = 1;
+                app.RightPanel.Layout.Column = 3;
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    <span class="comment">% Component initialization</span>
+    methods (Access = private)
+
+        <span class="comment">% Create UIFigure and components</span>
+        <span class="keyword">function</span> createComponents(app)
+
+            <span class="comment">% Create UIFigure and hide until all components are created</span>
+            app.UIFigure = uifigure(<span class="string">'Visible'</span>, <span class="string">'off'</span>);
+            app.UIFigure.AutoResizeChildren = <span class="string">'off'</span>;
+            app.UIFigure.Position = [100 100 1073 599];
+            app.UIFigure.Name = <span class="string">'MATLAB App'</span>;
+            app.UIFigure.SizeChangedFcn = createCallbackFcn(app, @updateAppLayout, true);
+
+            <span class="comment">% Create GridLayout</span>
+            app.GridLayout = uigridlayout(app.UIFigure);
+            app.GridLayout.ColumnWidth = {220, <span class="string">'1x'</span>, 433};
+            app.GridLayout.RowHeight = {<span class="string">'1x'</span>};
+            app.GridLayout.ColumnSpacing = 0;
+            app.GridLayout.RowSpacing = 0;
+            app.GridLayout.Padding = [0 0 0 0];
+            app.GridLayout.Scrollable = <span class="string">'on'</span>;
+
+            <span class="comment">% Create LeftPanel</span>
+            app.LeftPanel = uipanel(app.GridLayout);
+            app.LeftPanel.Layout.Row = 1;
+            app.LeftPanel.Layout.Column = 1;
+
+            <span class="comment">% Create CaracteristicaAVazio</span>
+            app.CaracteristicaAVazio = uiaxes(app.LeftPanel);
+            xlabel(app.CaracteristicaAVazio, <span class="string">'Corrente de Campo (A)'</span>)
+            ylabel(app.CaracteristicaAVazio, <span class="string">'Tens&atilde;o de Terminal (kV)'</span>)
+            zlabel(app.CaracteristicaAVazio, <span class="string">'Z'</span>)
+            app.CaracteristicaAVazio.Color = <span class="string">'none'</span>;
+            app.CaracteristicaAVazio.Position = [11 15 202 193];
+
+            <span class="comment">% Create PotenciaAparenteMVaLabel</span>
+            app.PotenciaAparenteMVaLabel = uilabel(app.LeftPanel);
+            app.PotenciaAparenteMVaLabel.HorizontalAlignment = <span class="string">'right'</span>;
+            app.PotenciaAparenteMVaLabel.WordWrap = <span class="string">'on'</span>;
+            app.PotenciaAparenteMVaLabel.Position = [11 447 140 30];
+            app.PotenciaAparenteMVaLabel.Text = <span class="string">'Potencia Aparente (MVa)'</span>;
+
+            <span class="comment">% Create PotenciaAparente</span>
+            app.PotenciaAparente = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.PotenciaAparente.Limits = [0 Inf];
+            app.PotenciaAparente.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.PotenciaAparente.HorizontalAlignment = <span class="string">'center'</span>;
+            app.PotenciaAparente.Position = [161 455 49 22];
+            app.PotenciaAparente.Value = 50;
+
+            <span class="comment">% Create TipodeLigacao</span>
+            app.TipodeLigacao = uibuttongroup(app.LeftPanel);
+            app.TipodeLigacao.SelectionChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TipodeLigacao.Title = <span class="string">'Tipo de Liga&ccedil;&atilde;o'</span>;
+            app.TipodeLigacao.Position = [11 480 100 70];
+
+            <span class="comment">% Create Y</span>
+            app.Y = uiradiobutton(app.TipodeLigacao);
+            app.Y.Text = <span class="string">'Y'</span>;
+            app.Y.Position = [11 24 58 22];
+            app.Y.Value = true;
+
+            <span class="comment">% Create Delta</span>
+            app.Delta = uiradiobutton(app.TipodeLigacao);
+            app.Delta.Text = <span class="string">'Delta'</span>;
+            app.Delta.Position = [11 2 65 22];
+
+            <span class="comment">% Create FPEditFieldLabel</span>
+            app.FPEditFieldLabel = uilabel(app.LeftPanel);
+            app.FPEditFieldLabel.HorizontalAlignment = <span class="string">'right'</span>;
+            app.FPEditFieldLabel.Position = [17 423 25 22];
+            app.FPEditFieldLabel.Text = <span class="string">'FP'</span>;
+
+            <span class="comment">% Create FP</span>
+            app.FP = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.FP.Limits = [0 1];
+            app.FP.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.FP.Position = [57 423 37 22];
+            app.FP.Value = 0.9;
+
+            <span class="comment">% Create TipodeFP</span>
+            app.TipodeFP = uibuttongroup(app.LeftPanel);
+            app.TipodeFP.SelectionChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TipodeFP.Title = <span class="string">'Tipo de FP'</span>;
+            app.TipodeFP.Position = [111 479 100 71];
+
+            <span class="comment">% Create Indutivo</span>
+            app.Indutivo = uiradiobutton(app.TipodeFP);
+            app.Indutivo.Text = <span class="string">'Indutivo'</span>;
+            app.Indutivo.Position = [11 25 64 22];
+            app.Indutivo.Value = true;
+
+            <span class="comment">% Create Capacitivo</span>
+            app.Capacitivo = uiradiobutton(app.TipodeFP);
+            app.Capacitivo.Text = <span class="string">'Capacitivo'</span>;
+            app.Capacitivo.Position = [11 3 78 22];
+
+            <span class="comment">% Create NumerodePolosEditFieldLabel</span>
+            app.NumerodePolosEditFieldLabel = uilabel(app.LeftPanel);
+            app.NumerodePolosEditFieldLabel.HorizontalAlignment = <span class="string">'right'</span>;
+            app.NumerodePolosEditFieldLabel.Position = [111 416 51 30];
+            app.NumerodePolosEditFieldLabel.Text = {<span class="string">'Numero '</span>; <span class="string">'de Polos'</span>};
+
+            <span class="comment">% Create NumerodePolos</span>
+            app.NumerodePolos = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.NumerodePolos.Limits = [1 Inf];
+            app.NumerodePolos.ValueChangedFcn = createCallbackFcn(app, @NumerodePolosValueChanged, true);
+            app.NumerodePolos.Position = [177 424 33 22];
+            app.NumerodePolos.Value = 4;
+
+            <span class="comment">% Create ResistnciadeArmaduraLabel</span>
+            app.ResistnciadeArmaduraLabel = uilabel(app.LeftPanel);
+            app.ResistnciadeArmaduraLabel.Interpreter = <span class="string">'html'</span>;
+            app.ResistnciadeArmaduraLabel.Position = [21 384 141 30];
+            app.ResistnciadeArmaduraLabel.Text = <span class="string">'Resist&ecirc;ncia de Armadura'</span>;
+
+            <span class="comment">% Create ResistenciadeArmadura</span>
+            app.ResistenciadeArmadura = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.ResistenciadeArmadura.Limits = [0 Inf];
+            app.ResistenciadeArmadura.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.ResistenciadeArmadura.Position = [171 392 39 22];
+            app.ResistenciadeArmadura.Value = 0.2;
+
+            <span class="comment">% Create ReatanciaSincronaLabel</span>
+            app.ReatanciaSincronaLabel = uilabel(app.LeftPanel);
+            app.ReatanciaSincronaLabel.Position = [21 357 140 30];
+            app.ReatanciaSincronaLabel.Text = <span class="string">'Reatancia Sincrona'</span>;
+
+            <span class="comment">% Create ReatanciaSincrona</span>
+            app.ReatanciaSincrona = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.ReatanciaSincrona.Limits = [0 Inf];
+            app.ReatanciaSincrona.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.ReatanciaSincrona.Position = [171 365 39 22];
+            app.ReatanciaSincrona.Value = 2.5;
+
+            <span class="comment">% Create FrequenciadaRedeLabel</span>
+            app.FrequenciadaRedeLabel = uilabel(app.LeftPanel);
+            app.FrequenciadaRedeLabel.Position = [20 331 140 30];
+            app.FrequenciadaRedeLabel.Text = <span class="string">'Tens&atilde;o de Terminal (kV)'</span>;
+
+            <span class="comment">% Create TensaoTerminal</span>
+            app.TensaoTerminal = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.TensaoTerminal.Limits = [0 Inf];
+            app.TensaoTerminal.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TensaoTerminal.Position = [171 339 40 22];
+            app.TensaoTerminal.Value = 13.8;
+
+            <span class="comment">% Create Vazio</span>
+            app.Vazio = uibuttongroup(app.LeftPanel);
+            app.Vazio.Title = <span class="string">'Caracteristica a Vazio'</span>;
+            app.Vazio.Position = [11 256 200 71];
+
+            <span class="comment">% Create Procurar</span>
+            app.Procurar = uibutton(app.Vazio, <span class="string">'push'</span>);
+            app.Procurar.ButtonPushedFcn = createCallbackFcn(app, @ProcurarButtonPushed, true);
+            app.Procurar.Position = [8 15 183 23];
+            app.Procurar.Text = <span class="string">'Procurar'</span>;
+
+            <span class="comment">% Create InformaesdoGeradorSncronoLabel</span>
+            app.InformaesdoGeradorSncronoLabel = uilabel(app.LeftPanel);
+            app.InformaesdoGeradorSncronoLabel.HorizontalAlignment = <span class="string">'center'</span>;
+            app.InformaesdoGeradorSncronoLabel.WordWrap = <span class="string">'on'</span>;
+            app.InformaesdoGeradorSncronoLabel.FontSize = 20;
+            app.InformaesdoGeradorSncronoLabel.FontWeight = <span class="string">'bold'</span>;
+            app.InformaesdoGeradorSncronoLabel.Position = [1 553 213 45];
+            app.InformaesdoGeradorSncronoLabel.Text = <span class="string">'Informa&ccedil;&otilde;es do Gerador S&iacute;ncrono'</span>;
+
+            <span class="comment">% Create VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel</span>
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel = uilabel(app.LeftPanel);
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.HorizontalAlignment = <span class="string">'center'</span>;
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.WordWrap = <span class="string">'on'</span>;
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.Position = [11 222 151 28];
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.Text = {<span class="string">'Velocidade de Rotac&atilde;o'</span>; <span class="string">'Rota&ccedil;&otilde;es por Minuto (rpm)'</span>};
+
+            <span class="comment">% Create VelocidadedeRotacoRotaesporMinutorpmEditField</span>
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField = uieditfield(app.LeftPanel, <span class="string">'numeric'</span>);
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Editable = <span class="string">'off'</span>;
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Position = [161 222 49 28];
+
+            <span class="comment">% Create CenterPanel</span>
+            app.CenterPanel = uipanel(app.GridLayout);
+            app.CenterPanel.Layout.Row = 1;
+            app.CenterPanel.Layout.Column = 2;
+
+            <span class="comment">% Create Grafico1_q01</span>
+            app.Grafico1_q01 = uiaxes(app.CenterPanel);
+            app.Grafico1_q01.Color = <span class="string">'none'</span>;
+            app.Grafico1_q01.Position = [11 331 400 197];
+
+            <span class="comment">% Create Grafico2_q01</span>
+            app.Grafico2_q01 = uiaxes(app.CenterPanel);
+            app.Grafico2_q01.XColor = [0 0 0];
+            app.Grafico2_q01.Color = <span class="string">'none'</span>;
+            app.Grafico2_q01.Position = [11 7 400 251];
+
+            <span class="comment">% Create Questo1Label</span>
+            app.Questo1Label = uilabel(app.CenterPanel);
+            app.Questo1Label.HorizontalAlignment = <span class="string">'center'</span>;
+            app.Questo1Label.WordWrap = <span class="string">'on'</span>;
+            app.Questo1Label.FontSize = 20;
+            app.Questo1Label.FontWeight = <span class="string">'bold'</span>;
+            app.Questo1Label.Position = [31 573 360 25];
+            app.Questo1Label.Text = <span class="string">'Quest&atilde;o 1'</span>;
+
+            <span class="comment">% Create PorcentagemdeCargaSpinnerLabel</span>
+            app.PorcentagemdeCargaSpinnerLabel = uilabel(app.CenterPanel);
+            app.PorcentagemdeCargaSpinnerLabel.HorizontalAlignment = <span class="string">'right'</span>;
+            app.PorcentagemdeCargaSpinnerLabel.Position = [99 536 152 22];
+            app.PorcentagemdeCargaSpinnerLabel.Text = <span class="string">'Porcentagem de Carga (%)'</span>;
+
+            <span class="comment">% Create PorcentagemdeCarga_q01</span>
+            app.PorcentagemdeCarga_q01 = uispinner(app.CenterPanel);
+            app.PorcentagemdeCarga_q01.Step = 10;
+            app.PorcentagemdeCarga_q01.Limits = [0 100];
+            app.PorcentagemdeCarga_q01.ValueChangedFcn = createCallbackFcn(app, @PorcentagemdeCarga_q01ValueChanged, true);
+            app.PorcentagemdeCarga_q01.Position = [261 536 49 22];
+            app.PorcentagemdeCarga_q01.Value = 60;
+
+            <span class="comment">% Create LimparGrafico2_q01</span>
+            app.LimparGrafico2_q01 = uibutton(app.CenterPanel, <span class="string">'push'</span>);
+            app.LimparGrafico2_q01.ButtonPushedFcn = createCallbackFcn(app, @LimparGrafico2_q01ButtonPushed, true);
+            app.LimparGrafico2_q01.Position = [11 257 73 25];
+            app.LimparGrafico2_q01.Text = <span class="string">'Limpar'</span>;
+
+            <span class="comment">% Create CorrentedeArmaduraLabel</span>
+            app.CorrentedeArmaduraLabel = uilabel(app.CenterPanel);
+            app.CorrentedeArmaduraLabel.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeArmaduraLabel.WordWrap = <span class="string">'on'</span>;
+            app.CorrentedeArmaduraLabel.Position = [11 287 89 28];
+            app.CorrentedeArmaduraLabel.Text = {<span class="string">'Corrente de'</span>; <span class="string">'Armadura (pu)'</span>};
+
+            <span class="comment">% Create CorrentedeArmadurapu_q01</span>
+            app.CorrentedeArmadurapu_q01 = uieditfield(app.CenterPanel, <span class="string">'numeric'</span>);
+            app.CorrentedeArmadurapu_q01.Editable = <span class="string">'off'</span>;
+            app.CorrentedeArmadurapu_q01.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeArmadurapu_q01.Position = [99 289 33 30];
+
+            <span class="comment">% Create CorrentedeCampopuEditFieldLabel</span>
+            app.CorrentedeCampopuEditFieldLabel = uilabel(app.CenterPanel);
+            app.CorrentedeCampopuEditFieldLabel.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeCampopuEditFieldLabel.WordWrap = <span class="string">'on'</span>;
+            app.CorrentedeCampopuEditFieldLabel.Position = [144 285 89 28];
+            app.CorrentedeCampopuEditFieldLabel.Text = {<span class="string">'Corrente de'</span>; <span class="string">'Campo (pu)'</span>};
+
+            <span class="comment">% Create CorrentedeCampopu_q01</span>
+            app.CorrentedeCampopu_q01 = uieditfield(app.CenterPanel, <span class="string">'numeric'</span>);
+            app.CorrentedeCampopu_q01.Editable = <span class="string">'off'</span>;
+            app.CorrentedeCampopu_q01.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeCampopu_q01.Position = [232 287 33 30];
+
+            <span class="comment">% Create TensoInternaEapuLabel</span>
+            app.TensoInternaEapuLabel = uilabel(app.CenterPanel);
+            app.TensoInternaEapuLabel.HorizontalAlignment = <span class="string">'center'</span>;
+            app.TensoInternaEapuLabel.WordWrap = <span class="string">'on'</span>;
+            app.TensoInternaEapuLabel.Position = [290 287 89 28];
+            app.TensoInternaEapuLabel.Text = {<span class="string">'Tens&atilde;o Interna '</span>; <span class="string">'Ea (pu)'</span>};
+
+            <span class="comment">% Create TensodeTerminalpu_q01</span>
+            app.TensodeTerminalpu_q01 = uieditfield(app.CenterPanel, <span class="string">'numeric'</span>);
+            app.TensodeTerminalpu_q01.Editable = <span class="string">'off'</span>;
+            app.TensodeTerminalpu_q01.HorizontalAlignment = <span class="string">'center'</span>;
+            app.TensodeTerminalpu_q01.Position = [378 289 33 30];
+
+            <span class="comment">% Create RightPanel</span>
+            app.RightPanel = uipanel(app.GridLayout);
+            app.RightPanel.Layout.Row = 1;
+            app.RightPanel.Layout.Column = 3;
+
+            <span class="comment">% Create Grafico2_q02</span>
+            app.Grafico2_q02 = uiaxes(app.RightPanel);
+            app.Grafico2_q02.Color = <span class="string">'none'</span>;
+            app.Grafico2_q02.Position = [12 10 400 251];
+
+            <span class="comment">% Create Grafico1_q02</span>
+            app.Grafico1_q02 = uiaxes(app.RightPanel);
+            app.Grafico1_q02.Color = <span class="string">'none'</span>;
+            app.Grafico1_q02.Position = [15 331 400 197];
+
+            <span class="comment">% Create Questo2Label</span>
+            app.Questo2Label = uilabel(app.RightPanel);
+            app.Questo2Label.HorizontalAlignment = <span class="string">'center'</span>;
+            app.Questo2Label.WordWrap = <span class="string">'on'</span>;
+            app.Questo2Label.FontSize = 20;
+            app.Questo2Label.FontWeight = <span class="string">'bold'</span>;
+            app.Questo2Label.Position = [31 572 360 26];
+            app.Questo2Label.Text = <span class="string">'Quest&atilde;o 2'</span>;
+
+            <span class="comment">% Create CorrentedeCampoASpinner_2Label</span>
+            app.CorrentedeCampoASpinner_2Label = uilabel(app.RightPanel);
+            app.CorrentedeCampoASpinner_2Label.HorizontalAlignment = <span class="string">'right'</span>;
+            app.CorrentedeCampoASpinner_2Label.Position = [121 536 130 22];
+            app.CorrentedeCampoASpinner_2Label.Text = <span class="string">'Corrente de Campo (A)'</span>;
+
+            <span class="comment">% Create CorrentedeCampoA_q02</span>
+            app.CorrentedeCampoA_q02 = uispinner(app.RightPanel);
+            app.CorrentedeCampoA_q02.Limits = [0 100];
+            app.CorrentedeCampoA_q02.ValueChangedFcn = createCallbackFcn(app, @CorrentedeCampoA_q02ValueChanged, true);
+            app.CorrentedeCampoA_q02.Position = [261 536 49 22];
+            app.CorrentedeCampoA_q02.Value = 6;
+
+            <span class="comment">% Create LimparGrafico1_q01</span>
+            app.LimparGrafico1_q01 = uibutton(app.RightPanel, <span class="string">'push'</span>);
+            app.LimparGrafico1_q01.ButtonPushedFcn = createCallbackFcn(app, @LimparGrafico1_q01ButtonPushed, true);
+            app.LimparGrafico1_q01.Position = [13 257 73 25];
+            app.LimparGrafico1_q01.Text = <span class="string">'Limpar'</span>;
+
+            <span class="comment">% Create CorrentedeArmaduraLabel_2</span>
+            app.CorrentedeArmaduraLabel_2 = uilabel(app.RightPanel);
+            app.CorrentedeArmaduraLabel_2.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeArmaduraLabel_2.WordWrap = <span class="string">'on'</span>;
+            app.CorrentedeArmaduraLabel_2.Position = [12 289 89 28];
+            app.CorrentedeArmaduraLabel_2.Text = {<span class="string">'Corrente de'</span>; <span class="string">'Armadura (pu)'</span>};
+
+            <span class="comment">% Create CorrentedeArmadurapu_q02</span>
+            app.CorrentedeArmadurapu_q02 = uieditfield(app.RightPanel, <span class="string">'numeric'</span>);
+            app.CorrentedeArmadurapu_q02.Editable = <span class="string">'off'</span>;
+            app.CorrentedeArmadurapu_q02.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeArmadurapu_q02.Position = [100 291 33 30];
+
+            <span class="comment">% Create TensodeTerminalpuEditFieldLabel_2</span>
+            app.TensodeTerminalpuEditFieldLabel_2 = uilabel(app.RightPanel);
+            app.TensodeTerminalpuEditFieldLabel_2.HorizontalAlignment = <span class="string">'center'</span>;
+            app.TensodeTerminalpuEditFieldLabel_2.WordWrap = <span class="string">'on'</span>;
+            app.TensodeTerminalpuEditFieldLabel_2.Position = [291 289 89 28];
+            app.TensodeTerminalpuEditFieldLabel_2.Text = {<span class="string">'Tens&atilde;o Interna'</span>; <span class="string">'Ea (pu)'</span>};
+
+            <span class="comment">% Create TensodeTerminalpu_q02</span>
+            app.TensodeTerminalpu_q02 = uieditfield(app.RightPanel, <span class="string">'numeric'</span>);
+            app.TensodeTerminalpu_q02.Editable = <span class="string">'off'</span>;
+            app.TensodeTerminalpu_q02.HorizontalAlignment = <span class="string">'center'</span>;
+            app.TensodeTerminalpu_q02.Position = [379 291 33 30];
+
+            <span class="comment">% Create CorrentedeCampopuEditField_2Label</span>
+            app.CorrentedeCampopuEditField_2Label = uilabel(app.RightPanel);
+            app.CorrentedeCampopuEditField_2Label.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeCampopuEditField_2Label.WordWrap = <span class="string">'on'</span>;
+            app.CorrentedeCampopuEditField_2Label.Position = [145 287 89 28];
+            app.CorrentedeCampopuEditField_2Label.Text = {<span class="string">'Corrente de'</span>; <span class="string">'Campo (pu)'</span>};
+
+            <span class="comment">% Create CorrentedeCampopu_q02</span>
+            app.CorrentedeCampopu_q02 = uieditfield(app.RightPanel, <span class="string">'numeric'</span>);
+            app.CorrentedeCampopu_q02.Editable = <span class="string">'off'</span>;
+            app.CorrentedeCampopu_q02.HorizontalAlignment = <span class="string">'center'</span>;
+            app.CorrentedeCampopu_q02.Position = [233 289 33 30];
+
+            <span class="comment">% Show the figure after all components are created</span>
+            app.UIFigure.Visible = <span class="string">'on'</span>;
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+
+    <span class="comment">% App creation and deletion</span>
+    methods (Access = public)
+
+        <span class="comment">% Construct app</span>
+        <span class="keyword">function</span> app = interface_final_G05_exported
+
+            <span class="comment">% Create UIFigure and components</span>
+            createComponents(app)
+
+            <span class="comment">% Register the app with App Designer</span>
+            registerApp(app, app.UIFigure)
+
+            <span class="comment">% Execute the startup function</span>
+            runStartupFcn(app, @startupFcn)
+
+            <span class="keyword">if</span> nargout == 0
+                clear <span class="string">app</span>
+            <span class="keyword">end</span>
+        <span class="keyword">end</span>
+
+        <span class="comment">% Code that executes before app deletion</span>
+        <span class="keyword">function</span> delete(app)
+
+            <span class="comment">% Delete UIFigure when app is deleted</span>
+            delete(app.UIFigure)
+        <span class="keyword">end</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2022a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+classdef interface_final_G05_exported < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                        matlab.ui.Figure
+        GridLayout                      matlab.ui.container.GridLayout
+        LeftPanel                       matlab.ui.container.Panel
+        VelocidadedeRotacoRotaesporMinutorpmEditField  matlab.ui.control.NumericEditField
+        VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel  matlab.ui.control.Label
+        InformaesdoGeradorSncronoLabel  matlab.ui.control.Label
+        Vazio                           matlab.ui.container.ButtonGroup
+        Procurar                        matlab.ui.control.Button
+        TensaoTerminal                  matlab.ui.control.NumericEditField
+        FrequenciadaRedeLabel           matlab.ui.control.Label
+        ReatanciaSincrona               matlab.ui.control.NumericEditField
+        ReatanciaSincronaLabel          matlab.ui.control.Label
+        ResistenciadeArmadura           matlab.ui.control.NumericEditField
+        ResistnciadeArmaduraLabel       matlab.ui.control.Label
+        NumerodePolos                   matlab.ui.control.NumericEditField
+        NumerodePolosEditFieldLabel     matlab.ui.control.Label
+        TipodeFP                        matlab.ui.container.ButtonGroup
+        Capacitivo                      matlab.ui.control.RadioButton
+        Indutivo                        matlab.ui.control.RadioButton
+        FP                              matlab.ui.control.NumericEditField
+        FPEditFieldLabel                matlab.ui.control.Label
+        TipodeLigacao                   matlab.ui.container.ButtonGroup
+        Delta                           matlab.ui.control.RadioButton
+        Y                               matlab.ui.control.RadioButton
+        PotenciaAparente                matlab.ui.control.NumericEditField
+        PotenciaAparenteMVaLabel        matlab.ui.control.Label
+        CaracteristicaAVazio            matlab.ui.control.UIAxes
+        CenterPanel                     matlab.ui.container.Panel
+        TensodeTerminalpu_q01           matlab.ui.control.NumericEditField
+        TensoInternaEapuLabel           matlab.ui.control.Label
+        CorrentedeCampopu_q01           matlab.ui.control.NumericEditField
+        CorrentedeCampopuEditFieldLabel  matlab.ui.control.Label
+        CorrentedeArmadurapu_q01        matlab.ui.control.NumericEditField
+        CorrentedeArmaduraLabel         matlab.ui.control.Label
+        LimparGrafico2_q01              matlab.ui.control.Button
+        PorcentagemdeCarga_q01          matlab.ui.control.Spinner
+        PorcentagemdeCargaSpinnerLabel  matlab.ui.control.Label
+        Questo1Label                    matlab.ui.control.Label
+        Grafico2_q01                    matlab.ui.control.UIAxes
+        Grafico1_q01                    matlab.ui.control.UIAxes
+        RightPanel                      matlab.ui.container.Panel
+        CorrentedeCampopu_q02           matlab.ui.control.NumericEditField
+        CorrentedeCampopuEditField_2Label  matlab.ui.control.Label
+        TensodeTerminalpu_q02           matlab.ui.control.NumericEditField
+        TensodeTerminalpuEditFieldLabel_2  matlab.ui.control.Label
+        CorrentedeArmadurapu_q02        matlab.ui.control.NumericEditField
+        CorrentedeArmaduraLabel_2       matlab.ui.control.Label
+        LimparGrafico1_q01              matlab.ui.control.Button
+        CorrentedeCampoA_q02            matlab.ui.control.Spinner
+        CorrentedeCampoASpinner_2Label  matlab.ui.control.Label
+        Questo2Label                    matlab.ui.control.Label
+        Grafico1_q02                    matlab.ui.control.UIAxes
+        Grafico2_q02                    matlab.ui.control.UIAxes
+    end
+
+    % Properties that correspond to apps with auto-reflow
+    properties (Access = private)
+        onePanelWidth = 576;
+        twoPanelWidth = 768;
+    end
+
+    
+    properties (Access = public)
+        File;
+        If_x_Vt;
+        poli_If_x_Vt_inv;
+        Ea_temp;
+        jXsIa_temp;
+    end
+    
+    properties (Access = private)
+        pot_aparente; % potência aparente do GS
+        Xs; % reatância síncrona do GS
+        Ra; % resistência de armadura do GS
+        fp; % fator de potência (atrasado)
+        fp_estado; % i - indutivo e c-capacitivo
+        ligacao; % y - ligacao Y e d - ligacao delta
+        num_polos; % Número de polos da máquina.
+        freq_ele; % frequência elétrica em Hz.
+        Vt;
+        Vp;
+        Vl;
+        Ic_ref;
+        Ia_ref;
+        Il_ref;
+        Ea_ref;
+        %Ea_ref_comp;
+        Ia_pu_q01;
+        Il_pu_q01;
+        Ea_pu_q01;
+        Ia_pu_q02;
+        Il_pu_q02;
+        Ea_pu_q02;
+    end
+    
+    
+    methods (Access = public)
+        
+        function calc_op_nominal_gs( ...
+            app, ...
+            tensao_linha ...
+        )        
+            if app.fp_estado == "Indutivo"
+                Ia_phase = -1*acosd(app.fp);
+            end
+            if app.fp_estado == "Capacitivo"
+                Ia_phase = abs(acosd(app.fp));
+            end
+
+            if app.ligacao == 'Y'
+                app.Ia_ref = app.pot_aparente/(sqrt(3)*tensao_linha);
+                app.Ia_ref = app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase);
+                app.Il_ref = app.Ia_ref;
+            end
+
+            if app.ligacao == "Delta"
+                app.Ia_ref = app.pot_aparente/(3*tensao_linha);
+                app.Ia_ref = app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase);
+                app.Il_ref = app.Ia_ref*sqrt(3);
+            end
+            
+            app.Ea_ref = app.Vp + 1i*app.Xs*app.Ia_ref;
+        end
+    
+        function calc_tensao_fase(app)
+    
+            if app.ligacao == 'Y'
+                app.Vp = app.Vt/sqrt(3);
+                app.Vl = app.Vt;
+            end
+            
+            if app.ligacao == "Delta"
+                app.Vp = app.Vt;
+                app.Vl = app.Vt;
+            end
+        
+        end
+
+        function [Ea,jXsIa] = calc_tensao_induzida( ...
+                app, ...
+                tensao_fase, ...
+                tensao_fase_angle ...
+              )
+            
+            jXsIa= 1i*app.Xs*app.Ia_ref; %1i*app.Xs*(Ia*cosd(Ia_phase)+ 1i*Ia*sind(Ia_phase));
+            Ea = tensao_fase*cosd(tensao_fase_angle) + 1i*tensao_fase*sind(tensao_fase_angle) + jXsIa; %+ app.Ra*(Ia*cosd(Ia_phase)+ 1i*Ia*sind(Ia_phase));
+        end
+        
+        function [Ia_pu,Il_pu,Ea_pu] = calc_gs_pu( ...
+            app,...
+            Ia, ...
+            Il, ...
+            Ea ...
+            )
+            %% Corrente de Armadura
+            Ia_pu = abs(Ia)/abs(app.Ia_ref);
+        
+            %% Corrente de Linha
+            Il_pu = abs(Il)/abs(app.Il_ref);
+        
+            %% Tensão Induzida
+            Ea_pu = abs(Ea)/abs(app.Ea_ref);       
+        end
+    
+        function gera_graficos01( ...
+                app, ...
+                ax, ...
+                Ea, ...
+                jXsIa, ...
+                Ia ...
+            )
+           
+            %% Plot Tensão Induzida Interna Ea
+            quiver( ...
+                ax, ...
+                0*real(Ea), ...
+                0*imag(Ea), ...
+                real(Ea), ...
+                imag(Ea), ...
+                0, ...
+                'g', ...
+                'LineWidth',...
+                2 ...
+            );
+            hold(ax,'on');
+            
+            %% Plot Tensão de Fase Vp
+            quiver(ax,0*app.Vp,0*app.Vp,app.Vp,0*app.Vp,0,'b','LineWidth',2);
+
+            %% Plot Corrente de Armadura Ia
+            quiver( ...
+                ax, ...
+                0*app.Vp, ...
+                0*app.Vp, ...
+                real(Ia), ...
+                imag(Ia), ...
+                0, ...
+                'r', ...
+                'LineWidth',...
+                2 ...
+             );
+
+            %% Plot Resistência de Armadura RaIa
+%             
+%             quiver( ...
+%                 ax, ...
+%                 app.Vp, ...
+%                 0*app.Vp, ...
+%                 app.Ra*real(Ia), ...
+%                 imag(app.Ra*1i*imag(Ia)), ...
+%                 0, ...
+%                 'y', ...
+%                 'LineWidth',...
+%                 2 ...
+%              );
+
+            %% Plot Reatância Síncrona jXsIa
+            quiver( ...
+                ax, ...
+                app.Vp, ...
+                0, ...
+                real(jXsIa), ...
+                imag(jXsIa), ...
+                0, ...
+                'm', ...
+                'LineWidth',...
+                2 ...
+            );
+%             quiver( ...
+%                 ax, ...
+%                 app.Vp+app.Ra*real(Ia), ...
+%                 imag(app.Ra*1i*imag(Ia)), ...
+%                 real(jXsIa), ...
+%                 imag(jXsIa), ...
+%                 0, ...
+%                 'm', ...
+%                 'LineWidth',...
+%                 2 ...
+%             );
+            %quiver(app.Grafico1_q01,app.Vp,0*app.Vp,abs(jXsIa),imag(jXsIa),0,'m');
+
+            %legend(ax,'Ea','Vp','Ia','jXsIa','Location','southeast');
+
+            legend( ...
+                ax, ...
+                sprintf('Ea (%0.2f / %0.2f°)',abs(Ea),rad2deg(angle(Ea))), ...
+                sprintf('Vp (%0.2f / %0.2f°)',abs(app.Vp),rad2deg(angle(app.Vp))), ...
+                sprintf('Ia (%0.2f / %0.2f°)',abs(Ia),rad2deg(angle(Ia))), ...
+                sprintf('jXsIa (%0.2f / %0.2f°)',abs(jXsIa),rad2deg(angle(jXsIa))) ...
+            );
+            legend(ax,'boxoff');
+%             text(ax,0,0,sprintf('Ea (%0.2f/%0.2f°)',abs(Ea),rad2deg(angle(Ea))));
+        end
+    
+        function Il_novo = calc_corrente_linha( ...
+                app, ...
+                Ia ...
+                )
+            if app.ligacao == 'Y'
+                Il_novo = Ia;
+            end
+            
+            if app.ligacao == "Delta"
+                Il_novo = Ia*sqrt(3);
+            end
+        end
+
+        function inicial(app, Ea, jXsIa)
+            %% Inicialização Questão 1
+
+            app.PorcentagemdeCarga_q01.Value = 100;
+            app.CorrentedeCampoA_q02.Value = 3.5;
+
+            app.gera_graficos01(app.Grafico1_q01,Ea,jXsIa,app.Ia_ref);
+            legend(app.Grafico1_q01,'Location','northwest');
+            
+            [app.Ia_pu_q01,app.Il_pu_q01,app.Ea_pu_q01] = app.calc_gs_pu(app.Ia_ref,app.Il_ref,app.Ea_ref);
+            app.CorrentedeArmadurapu_q01.Value = app.Ia_pu_q01;
+            app.CorrentedeCampopu_q01.Value = app.Il_pu_q01;
+            app.TensodeTerminalpu_q01.Value = app.Ea_pu_q01;
+
+            %% Inicialização Questão 2
+
+            app.gera_graficos01(app.Grafico1_q02,Ea,jXsIa, app.Ia_ref);%(app.Ia_ref*cosd(Ia_phase) + 1i*app.Ia_ref*sind(Ia_phase)));
+            legend(app.Grafico1_q02,'Location','northwest');
+
+            [app.Ia_pu_q02,app.Il_pu_q02,app.Ea_pu_q02] = app.calc_gs_pu(app.Ia_ref,app.Il_ref,app.Ea_ref);
+            app.CorrentedeArmadurapu_q02.Value = app.Ia_pu_q02;
+            app.CorrentedeCampopu_q02.Value = app.Il_pu_q02;
+            app.TensodeTerminalpu_q02.Value = app.Ea_pu_q02;
+        end
+
+        function questao1(app)
+
+            y = asind(((app.pot_aparente*app.PorcentagemdeCarga_q01.Value/100)*app.fp*app.Xs)/(3*app.Vp*abs(app.Ea_ref)));
+            Ea_novo = abs(app.Ea_ref)*cosd(y) + 1i*abs(app.Ea_ref)*sind(y);
+            
+            % Calculo do Ia
+            Ia_novo = (Ea_novo - app.Vp)/(1i*app.Xs);
+            
+            % Calculo jXsIa 
+            jXsIa_novo = Ia_novo*(1i*app.Xs);
+
+            % Calculo do FP
+            fp_novo = cos(angle(Ia_novo));
+            
+            % Calculo da Il
+            Il_novo = app.calc_corrente_linha(Ia_novo);
+            
+            % Gráfico 1 - Questão 1
+            cla(app.Grafico1_q01);
+            app.gera_graficos01(app.Grafico1_q01,Ea_novo,jXsIa_novo,Ia_novo);
+            legend(app.Grafico1_q01,'Location','northwest');
+            legend(app.Grafico2_q01,'Location','northwest');
+
+            % Gráfico 2 - Questão 1
+            app.gera_graficos01(app.Grafico2_q01,Ea_novo,jXsIa_novo,Ia_novo);
+            title(app.Grafico1_q01,sprintf('Diagrama Fasorial - FP: %0.2f',fp_novo));
+            title(app.Grafico2_q01,'Diagramas Fasoriais - Variação de Carga');
+            
+            raio = abs(Ea_novo);
+            x = (raio-2):0.01:raio;
+            y = sqrt(raio^2 - x.^2);
+
+            plot(app.Grafico2_q01,x,y,'LineWidth',1.5,'Color','black','DisplayName','Arco');
+
+            [app.Ia_pu_q01,app.Il_pu_q01,app.Ea_pu_q01] = app.calc_gs_pu(Ia_novo,Il_novo,Ea_novo);
+            app.CorrentedeArmadurapu_q01.Value = app.Ia_pu_q01;
+            app.CorrentedeCampopu_q01.Value = app.Il_pu_q01;
+            app.TensodeTerminalpu_q01.Value = app.Ea_pu_q01;
+
+        end
+        
+        function questao2(app)
+            % Valor da Corrente de Campo Nominal
+            app.poli_If_x_Vt_inv = polyfit(app.If_x_Vt.Value.VT,app.If_x_Vt.Value.IF, 4);
+            app.Ic_ref = polyval(app.poli_If_x_Vt_inv, app.Vt*1000);
+            
+            % calculo Ea
+            Ea_novo = abs(app.Ea_ref)*(app.CorrentedeCampoA_q02.Value/app.Ic_ref);
+            y = asind((abs(app.Ea_ref)/abs(Ea_novo))*sin(angle(app.Ea_ref)));
+            Ea_novo = Ea_novo*cosd(y) + 1i*Ea_novo*sind(y);
+            % Calculo do Ia
+            Ia_novo = (Ea_novo - app.Vp)/(1i*app.Xs);
+            % Calculo jXsIa 
+            jXsIa_novo = Ia_novo*(1i*app.Xs);
+            % Calculo do FP
+            fp_novo = cos(angle(Ia_novo));
+            % Calculo da Il
+            Il_novo = app.calc_corrente_linha(Ia_novo);
+            % Gráfico 1 - Questão 2
+            cla(app.Grafico1_q02);
+            app.gera_graficos01(app.Grafico1_q02,Ea_novo,jXsIa_novo,Ia_novo);
+
+            % Gráfico 2 - Questão 2
+            app.gera_graficos01(app.Grafico2_q02,Ea_novo,jXsIa_novo,Ia_novo);
+            title(app.Grafico1_q02,sprintf('Diagrama Fasorial - FP: %0.2f',fp_novo));
+            title(app.Grafico2_q02,'Diagramas Fasoriais - Variação da Corrente de Campo (IF)');
+            legend(app.Grafico1_q02,'Location','southeast');
+            legend(app.Grafico2_q02,'Location','southeast');
+
+            x = real(app.Ea_ref):0.01:(real(app.Ea_ref)+25);
+            c = imag(Ea_novo);
+            const = @(x)(c).*x.^(0);
+
+            plot(app.Grafico2_q02,x,const(x),'LineWidth',1.5,'Color','black','DisplayName','Reta');
+
+            [app.Ia_pu_q02,app.Il_pu_q02,app.Ea_pu_q02] = app.calc_gs_pu(Ia_novo,Il_novo,Ea_novo);
+            app.CorrentedeArmadurapu_q02.Value = app.Ia_pu_q02;
+            app.CorrentedeCampopu_q02.Value = app.Il_pu_q02;
+            app.TensodeTerminalpu_q02.Value = app.Ea_pu_q02;
+
+        end
+    end
+    %end
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+            app.pot_aparente = app.PotenciaAparente.Value; % potência aparente do GS
+            app.Xs = app.ReatanciaSincrona.Value; % reatância síncrona do GS
+            app.Ra = app.ResistenciadeArmadura.Value; % resistência de armadura do GS
+            app.fp = app.FP.Value; % fator de potência
+            app.fp_estado = app.TipodeFP.SelectedObject.Text; % i - indutivo e c-capacitivo
+            app.ligacao = app.TipodeLigacao.SelectedObject.Text; % y - ligacao Y e d - ligacao delta
+            app.Vt = app.TensaoTerminal.Value; % tensão de terminal do GS
+            app.num_polos = app.NumerodePolos.Value; % Número de polos da máquina.
+            app.freq_ele = 60;
+
+            %% Inicialização Geral
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Value = (app.freq_ele*120)/app.num_polos;
+            app.calc_tensao_fase();
+            app.calc_op_nominal_gs(app.Vt);
+
+            [Ea,jXsIa]  = app.calc_tensao_induzida( ...
+                app.Vp, ...
+                0 ...
+             );
+
+            app.inicial(Ea, jXsIa);
+            title(app.Grafico1_q01, "Diagrama Fasorial na carga nominal");
+            title(app.Grafico1_q02, "Diagrama Fasorial com valores nominais");
+            
+        end
+
+        % Button pushed function: Procurar
+        function ProcurarButtonPushed(app, event)
+            
+            [file,fpath] = uigetfile('./*.csv');
+            app.File.Value = [fpath,file];
+            ds = datastore(app.File.Value);
+
+            app.If_x_Vt.Value = readall(ds);
+            
+            x = 0:0.01:10;
+            poli_If_x_Vt = polyfit(app.If_x_Vt.Value.IF,app.If_x_Vt.Value.VT, 4);
+            f = polyval(poli_If_x_Vt , x);
+
+            cla(app.Grafico1_q01);
+            cla(app.Grafico2_q01);
+            cla(app.Grafico1_q02);
+            cla(app.Grafico2_q02);
+            
+            plot( ...
+                app.CaracteristicaAVazio, ...
+                app.If_x_Vt.Value.IF, ...
+                app.If_x_Vt.Value.VT, ...
+                "Color","b", ...
+                'Marker','o');
+            hold(app.CaracteristicaAVazio,'on');
+            plot( ...
+                app.CaracteristicaAVazio, ...
+                x, ...
+                f, ...
+                "Color","r", ...
+                'LineStyle','-', ...
+                'LineWidth',1.5 ...
+            );
+            grid(app.CaracteristicaAVazio,'on');
+            
+            %% Configuração de botões
+            app.PorcentagemdeCarga_q01.Value = 60;
+            app.CorrentedeCampoA_q02.Value = 6;
+            app.CorrentedeCampoA_q02.Limits = [min(app.If_x_Vt.Value.IF) max(app.If_x_Vt.Value.IF)];
+
+            %% Inicialização Questão 1
+            app.questao1();
+            
+            %% Inicialização Questão 2
+            app.questao2();
+            
+        end
+
+        % Value changed function: NumerodePolos
+        function NumerodePolosValueChanged(app, event)
+            value = app.NumerodePolos.Value;
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Value = (app.freq_ele*120)/value;
+        end
+
+        % Callback function: FP, PotenciaAparente, ReatanciaSincrona, 
+        % ...and 4 other components
+        function TipodeLigacaoSelectionChanged(app, event)
+            cla(app.Grafico1_q01);
+            cla(app.Grafico2_q01);
+            cla(app.Grafico1_q02);
+            cla(app.Grafico2_q02);
+
+            app.ligacao = app.TipodeLigacao.SelectedObject.Text;
+            app.fp_estado = app.TipodeFP.SelectedObject.Text;
+            app.pot_aparente = app.PotenciaAparente.Value;
+            app.Xs = app.ReatanciaSincrona.Value;
+            app.Ra = app.ResistenciadeArmadura.Value;
+            app.fp = app.FP.Value;
+            app.Vt = app.TensaoTerminal.Value;
+            app.calc_tensao_fase();
+                app.calc_op_nominal_gs(app.Vt);
+    
+                [Ea,jXsIa]  = app.calc_tensao_induzida( ...
+                    app.Vp, ...
+                    0 ...
+                );
+
+            try
+                %% Inicialização Questão 2
+                app.questao2();
+
+                %% Inicialização Questão 1
+                app.questao1();
+
+            catch
+                
+                app.inicial(Ea, jXsIa);
+
+                cla(app.Grafico1_q02);
+                cla(app.Grafico2_q02);
+
+            end
+
+        end
+
+        % Button pushed function: LimparGrafico2_q01
+        function LimparGrafico2_q01ButtonPushed(app, event)
+            cla(app.Grafico2_q01);
+        end
+
+        % Button pushed function: LimparGrafico1_q01
+        function LimparGrafico1_q01ButtonPushed(app, event)
+            cla(app.Grafico2_q02);
+        end
+
+        % Value changed function: CorrentedeCampoA_q02
+        function CorrentedeCampoA_q02ValueChanged(app, event)
+            app.questao2();
+        end
+
+        % Value changed function: PorcentagemdeCarga_q01
+        function PorcentagemdeCarga_q01ValueChanged(app, event)
+            app.questao1();
+        end
+
+        % Changes arrangement of the app based on UIFigure width
+        function updateAppLayout(app, event)
+            currentFigureWidth = app.UIFigure.Position(3);
+            if(currentFigureWidth <= app.onePanelWidth)
+                % Change to a 3x1 grid
+                app.GridLayout.RowHeight = {599, 599, 599};
+                app.GridLayout.ColumnWidth = {'1x'};
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = 1;
+                app.LeftPanel.Layout.Row = 2;
+                app.LeftPanel.Layout.Column = 1;
+                app.RightPanel.Layout.Row = 3;
+                app.RightPanel.Layout.Column = 1;
+            elseif (currentFigureWidth > app.onePanelWidth && currentFigureWidth <= app.twoPanelWidth)
+                % Change to a 2x2 grid
+                app.GridLayout.RowHeight = {599, 599};
+                app.GridLayout.ColumnWidth = {'1x', '1x'};
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = [1,2];
+                app.LeftPanel.Layout.Row = 2;
+                app.LeftPanel.Layout.Column = 1;
+                app.RightPanel.Layout.Row = 2;
+                app.RightPanel.Layout.Column = 2;
+            else
+                % Change to a 1x3 grid
+                app.GridLayout.RowHeight = {'1x'};
+                app.GridLayout.ColumnWidth = {220, '1x', 433};
+                app.LeftPanel.Layout.Row = 1;
+                app.LeftPanel.Layout.Column = 1;
+                app.CenterPanel.Layout.Row = 1;
+                app.CenterPanel.Layout.Column = 2;
+                app.RightPanel.Layout.Row = 1;
+                app.RightPanel.Layout.Column = 3;
+            end
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.AutoResizeChildren = 'off';
+            app.UIFigure.Position = [100 100 1073 599];
+            app.UIFigure.Name = 'MATLAB App';
+            app.UIFigure.SizeChangedFcn = createCallbackFcn(app, @updateAppLayout, true);
+
+            % Create GridLayout
+            app.GridLayout = uigridlayout(app.UIFigure);
+            app.GridLayout.ColumnWidth = {220, '1x', 433};
+            app.GridLayout.RowHeight = {'1x'};
+            app.GridLayout.ColumnSpacing = 0;
+            app.GridLayout.RowSpacing = 0;
+            app.GridLayout.Padding = [0 0 0 0];
+            app.GridLayout.Scrollable = 'on';
+
+            % Create LeftPanel
+            app.LeftPanel = uipanel(app.GridLayout);
+            app.LeftPanel.Layout.Row = 1;
+            app.LeftPanel.Layout.Column = 1;
+
+            % Create CaracteristicaAVazio
+            app.CaracteristicaAVazio = uiaxes(app.LeftPanel);
+            xlabel(app.CaracteristicaAVazio, 'Corrente de Campo (A)')
+            ylabel(app.CaracteristicaAVazio, 'Tensão de Terminal (kV)')
+            zlabel(app.CaracteristicaAVazio, 'Z')
+            app.CaracteristicaAVazio.Color = 'none';
+            app.CaracteristicaAVazio.Position = [11 15 202 193];
+
+            % Create PotenciaAparenteMVaLabel
+            app.PotenciaAparenteMVaLabel = uilabel(app.LeftPanel);
+            app.PotenciaAparenteMVaLabel.HorizontalAlignment = 'right';
+            app.PotenciaAparenteMVaLabel.WordWrap = 'on';
+            app.PotenciaAparenteMVaLabel.Position = [11 447 140 30];
+            app.PotenciaAparenteMVaLabel.Text = 'Potencia Aparente (MVa)';
+
+            % Create PotenciaAparente
+            app.PotenciaAparente = uieditfield(app.LeftPanel, 'numeric');
+            app.PotenciaAparente.Limits = [0 Inf];
+            app.PotenciaAparente.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.PotenciaAparente.HorizontalAlignment = 'center';
+            app.PotenciaAparente.Position = [161 455 49 22];
+            app.PotenciaAparente.Value = 50;
+
+            % Create TipodeLigacao
+            app.TipodeLigacao = uibuttongroup(app.LeftPanel);
+            app.TipodeLigacao.SelectionChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TipodeLigacao.Title = 'Tipo de Ligação';
+            app.TipodeLigacao.Position = [11 480 100 70];
+
+            % Create Y
+            app.Y = uiradiobutton(app.TipodeLigacao);
+            app.Y.Text = 'Y';
+            app.Y.Position = [11 24 58 22];
+            app.Y.Value = true;
+
+            % Create Delta
+            app.Delta = uiradiobutton(app.TipodeLigacao);
+            app.Delta.Text = 'Delta';
+            app.Delta.Position = [11 2 65 22];
+
+            % Create FPEditFieldLabel
+            app.FPEditFieldLabel = uilabel(app.LeftPanel);
+            app.FPEditFieldLabel.HorizontalAlignment = 'right';
+            app.FPEditFieldLabel.Position = [17 423 25 22];
+            app.FPEditFieldLabel.Text = 'FP';
+
+            % Create FP
+            app.FP = uieditfield(app.LeftPanel, 'numeric');
+            app.FP.Limits = [0 1];
+            app.FP.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.FP.Position = [57 423 37 22];
+            app.FP.Value = 0.9;
+
+            % Create TipodeFP
+            app.TipodeFP = uibuttongroup(app.LeftPanel);
+            app.TipodeFP.SelectionChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TipodeFP.Title = 'Tipo de FP';
+            app.TipodeFP.Position = [111 479 100 71];
+
+            % Create Indutivo
+            app.Indutivo = uiradiobutton(app.TipodeFP);
+            app.Indutivo.Text = 'Indutivo';
+            app.Indutivo.Position = [11 25 64 22];
+            app.Indutivo.Value = true;
+
+            % Create Capacitivo
+            app.Capacitivo = uiradiobutton(app.TipodeFP);
+            app.Capacitivo.Text = 'Capacitivo';
+            app.Capacitivo.Position = [11 3 78 22];
+
+            % Create NumerodePolosEditFieldLabel
+            app.NumerodePolosEditFieldLabel = uilabel(app.LeftPanel);
+            app.NumerodePolosEditFieldLabel.HorizontalAlignment = 'right';
+            app.NumerodePolosEditFieldLabel.Position = [111 416 51 30];
+            app.NumerodePolosEditFieldLabel.Text = {'Numero '; 'de Polos'};
+
+            % Create NumerodePolos
+            app.NumerodePolos = uieditfield(app.LeftPanel, 'numeric');
+            app.NumerodePolos.Limits = [1 Inf];
+            app.NumerodePolos.ValueChangedFcn = createCallbackFcn(app, @NumerodePolosValueChanged, true);
+            app.NumerodePolos.Position = [177 424 33 22];
+            app.NumerodePolos.Value = 4;
+
+            % Create ResistnciadeArmaduraLabel
+            app.ResistnciadeArmaduraLabel = uilabel(app.LeftPanel);
+            app.ResistnciadeArmaduraLabel.Interpreter = 'html';
+            app.ResistnciadeArmaduraLabel.Position = [21 384 141 30];
+            app.ResistnciadeArmaduraLabel.Text = 'Resistência de Armadura';
+
+            % Create ResistenciadeArmadura
+            app.ResistenciadeArmadura = uieditfield(app.LeftPanel, 'numeric');
+            app.ResistenciadeArmadura.Limits = [0 Inf];
+            app.ResistenciadeArmadura.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.ResistenciadeArmadura.Position = [171 392 39 22];
+            app.ResistenciadeArmadura.Value = 0.2;
+
+            % Create ReatanciaSincronaLabel
+            app.ReatanciaSincronaLabel = uilabel(app.LeftPanel);
+            app.ReatanciaSincronaLabel.Position = [21 357 140 30];
+            app.ReatanciaSincronaLabel.Text = 'Reatancia Sincrona';
+
+            % Create ReatanciaSincrona
+            app.ReatanciaSincrona = uieditfield(app.LeftPanel, 'numeric');
+            app.ReatanciaSincrona.Limits = [0 Inf];
+            app.ReatanciaSincrona.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.ReatanciaSincrona.Position = [171 365 39 22];
+            app.ReatanciaSincrona.Value = 2.5;
+
+            % Create FrequenciadaRedeLabel
+            app.FrequenciadaRedeLabel = uilabel(app.LeftPanel);
+            app.FrequenciadaRedeLabel.Position = [20 331 140 30];
+            app.FrequenciadaRedeLabel.Text = 'Tensão de Terminal (kV)';
+
+            % Create TensaoTerminal
+            app.TensaoTerminal = uieditfield(app.LeftPanel, 'numeric');
+            app.TensaoTerminal.Limits = [0 Inf];
+            app.TensaoTerminal.ValueChangedFcn = createCallbackFcn(app, @TipodeLigacaoSelectionChanged, true);
+            app.TensaoTerminal.Position = [171 339 40 22];
+            app.TensaoTerminal.Value = 13.8;
+
+            % Create Vazio
+            app.Vazio = uibuttongroup(app.LeftPanel);
+            app.Vazio.Title = 'Caracteristica a Vazio';
+            app.Vazio.Position = [11 256 200 71];
+
+            % Create Procurar
+            app.Procurar = uibutton(app.Vazio, 'push');
+            app.Procurar.ButtonPushedFcn = createCallbackFcn(app, @ProcurarButtonPushed, true);
+            app.Procurar.Position = [8 15 183 23];
+            app.Procurar.Text = 'Procurar';
+
+            % Create InformaesdoGeradorSncronoLabel
+            app.InformaesdoGeradorSncronoLabel = uilabel(app.LeftPanel);
+            app.InformaesdoGeradorSncronoLabel.HorizontalAlignment = 'center';
+            app.InformaesdoGeradorSncronoLabel.WordWrap = 'on';
+            app.InformaesdoGeradorSncronoLabel.FontSize = 20;
+            app.InformaesdoGeradorSncronoLabel.FontWeight = 'bold';
+            app.InformaesdoGeradorSncronoLabel.Position = [1 553 213 45];
+            app.InformaesdoGeradorSncronoLabel.Text = 'Informações do Gerador Síncrono';
+
+            % Create VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel = uilabel(app.LeftPanel);
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.HorizontalAlignment = 'center';
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.WordWrap = 'on';
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.Position = [11 222 151 28];
+            app.VelocidadedeRotacoRotaesporMinutorpmEditFieldLabel.Text = {'Velocidade de Rotacão'; 'Rotações por Minuto (rpm)'};
+
+            % Create VelocidadedeRotacoRotaesporMinutorpmEditField
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField = uieditfield(app.LeftPanel, 'numeric');
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Editable = 'off';
+            app.VelocidadedeRotacoRotaesporMinutorpmEditField.Position = [161 222 49 28];
+
+            % Create CenterPanel
+            app.CenterPanel = uipanel(app.GridLayout);
+            app.CenterPanel.Layout.Row = 1;
+            app.CenterPanel.Layout.Column = 2;
+
+            % Create Grafico1_q01
+            app.Grafico1_q01 = uiaxes(app.CenterPanel);
+            app.Grafico1_q01.Color = 'none';
+            app.Grafico1_q01.Position = [11 331 400 197];
+
+            % Create Grafico2_q01
+            app.Grafico2_q01 = uiaxes(app.CenterPanel);
+            app.Grafico2_q01.XColor = [0 0 0];
+            app.Grafico2_q01.Color = 'none';
+            app.Grafico2_q01.Position = [11 7 400 251];
+
+            % Create Questo1Label
+            app.Questo1Label = uilabel(app.CenterPanel);
+            app.Questo1Label.HorizontalAlignment = 'center';
+            app.Questo1Label.WordWrap = 'on';
+            app.Questo1Label.FontSize = 20;
+            app.Questo1Label.FontWeight = 'bold';
+            app.Questo1Label.Position = [31 573 360 25];
+            app.Questo1Label.Text = 'Questão 1';
+
+            % Create PorcentagemdeCargaSpinnerLabel
+            app.PorcentagemdeCargaSpinnerLabel = uilabel(app.CenterPanel);
+            app.PorcentagemdeCargaSpinnerLabel.HorizontalAlignment = 'right';
+            app.PorcentagemdeCargaSpinnerLabel.Position = [99 536 152 22];
+            app.PorcentagemdeCargaSpinnerLabel.Text = 'Porcentagem de Carga (%)';
+
+            % Create PorcentagemdeCarga_q01
+            app.PorcentagemdeCarga_q01 = uispinner(app.CenterPanel);
+            app.PorcentagemdeCarga_q01.Step = 10;
+            app.PorcentagemdeCarga_q01.Limits = [0 100];
+            app.PorcentagemdeCarga_q01.ValueChangedFcn = createCallbackFcn(app, @PorcentagemdeCarga_q01ValueChanged, true);
+            app.PorcentagemdeCarga_q01.Position = [261 536 49 22];
+            app.PorcentagemdeCarga_q01.Value = 60;
+
+            % Create LimparGrafico2_q01
+            app.LimparGrafico2_q01 = uibutton(app.CenterPanel, 'push');
+            app.LimparGrafico2_q01.ButtonPushedFcn = createCallbackFcn(app, @LimparGrafico2_q01ButtonPushed, true);
+            app.LimparGrafico2_q01.Position = [11 257 73 25];
+            app.LimparGrafico2_q01.Text = 'Limpar';
+
+            % Create CorrentedeArmaduraLabel
+            app.CorrentedeArmaduraLabel = uilabel(app.CenterPanel);
+            app.CorrentedeArmaduraLabel.HorizontalAlignment = 'center';
+            app.CorrentedeArmaduraLabel.WordWrap = 'on';
+            app.CorrentedeArmaduraLabel.Position = [11 287 89 28];
+            app.CorrentedeArmaduraLabel.Text = {'Corrente de'; 'Armadura (pu)'};
+
+            % Create CorrentedeArmadurapu_q01
+            app.CorrentedeArmadurapu_q01 = uieditfield(app.CenterPanel, 'numeric');
+            app.CorrentedeArmadurapu_q01.Editable = 'off';
+            app.CorrentedeArmadurapu_q01.HorizontalAlignment = 'center';
+            app.CorrentedeArmadurapu_q01.Position = [99 289 33 30];
+
+            % Create CorrentedeCampopuEditFieldLabel
+            app.CorrentedeCampopuEditFieldLabel = uilabel(app.CenterPanel);
+            app.CorrentedeCampopuEditFieldLabel.HorizontalAlignment = 'center';
+            app.CorrentedeCampopuEditFieldLabel.WordWrap = 'on';
+            app.CorrentedeCampopuEditFieldLabel.Position = [144 285 89 28];
+            app.CorrentedeCampopuEditFieldLabel.Text = {'Corrente de'; 'Campo (pu)'};
+
+            % Create CorrentedeCampopu_q01
+            app.CorrentedeCampopu_q01 = uieditfield(app.CenterPanel, 'numeric');
+            app.CorrentedeCampopu_q01.Editable = 'off';
+            app.CorrentedeCampopu_q01.HorizontalAlignment = 'center';
+            app.CorrentedeCampopu_q01.Position = [232 287 33 30];
+
+            % Create TensoInternaEapuLabel
+            app.TensoInternaEapuLabel = uilabel(app.CenterPanel);
+            app.TensoInternaEapuLabel.HorizontalAlignment = 'center';
+            app.TensoInternaEapuLabel.WordWrap = 'on';
+            app.TensoInternaEapuLabel.Position = [290 287 89 28];
+            app.TensoInternaEapuLabel.Text = {'Tensão Interna '; 'Ea (pu)'};
+
+            % Create TensodeTerminalpu_q01
+            app.TensodeTerminalpu_q01 = uieditfield(app.CenterPanel, 'numeric');
+            app.TensodeTerminalpu_q01.Editable = 'off';
+            app.TensodeTerminalpu_q01.HorizontalAlignment = 'center';
+            app.TensodeTerminalpu_q01.Position = [378 289 33 30];
+
+            % Create RightPanel
+            app.RightPanel = uipanel(app.GridLayout);
+            app.RightPanel.Layout.Row = 1;
+            app.RightPanel.Layout.Column = 3;
+
+            % Create Grafico2_q02
+            app.Grafico2_q02 = uiaxes(app.RightPanel);
+            app.Grafico2_q02.Color = 'none';
+            app.Grafico2_q02.Position = [12 10 400 251];
+
+            % Create Grafico1_q02
+            app.Grafico1_q02 = uiaxes(app.RightPanel);
+            app.Grafico1_q02.Color = 'none';
+            app.Grafico1_q02.Position = [15 331 400 197];
+
+            % Create Questo2Label
+            app.Questo2Label = uilabel(app.RightPanel);
+            app.Questo2Label.HorizontalAlignment = 'center';
+            app.Questo2Label.WordWrap = 'on';
+            app.Questo2Label.FontSize = 20;
+            app.Questo2Label.FontWeight = 'bold';
+            app.Questo2Label.Position = [31 572 360 26];
+            app.Questo2Label.Text = 'Questão 2';
+
+            % Create CorrentedeCampoASpinner_2Label
+            app.CorrentedeCampoASpinner_2Label = uilabel(app.RightPanel);
+            app.CorrentedeCampoASpinner_2Label.HorizontalAlignment = 'right';
+            app.CorrentedeCampoASpinner_2Label.Position = [121 536 130 22];
+            app.CorrentedeCampoASpinner_2Label.Text = 'Corrente de Campo (A)';
+
+            % Create CorrentedeCampoA_q02
+            app.CorrentedeCampoA_q02 = uispinner(app.RightPanel);
+            app.CorrentedeCampoA_q02.Limits = [0 100];
+            app.CorrentedeCampoA_q02.ValueChangedFcn = createCallbackFcn(app, @CorrentedeCampoA_q02ValueChanged, true);
+            app.CorrentedeCampoA_q02.Position = [261 536 49 22];
+            app.CorrentedeCampoA_q02.Value = 6;
+
+            % Create LimparGrafico1_q01
+            app.LimparGrafico1_q01 = uibutton(app.RightPanel, 'push');
+            app.LimparGrafico1_q01.ButtonPushedFcn = createCallbackFcn(app, @LimparGrafico1_q01ButtonPushed, true);
+            app.LimparGrafico1_q01.Position = [13 257 73 25];
+            app.LimparGrafico1_q01.Text = 'Limpar';
+
+            % Create CorrentedeArmaduraLabel_2
+            app.CorrentedeArmaduraLabel_2 = uilabel(app.RightPanel);
+            app.CorrentedeArmaduraLabel_2.HorizontalAlignment = 'center';
+            app.CorrentedeArmaduraLabel_2.WordWrap = 'on';
+            app.CorrentedeArmaduraLabel_2.Position = [12 289 89 28];
+            app.CorrentedeArmaduraLabel_2.Text = {'Corrente de'; 'Armadura (pu)'};
+
+            % Create CorrentedeArmadurapu_q02
+            app.CorrentedeArmadurapu_q02 = uieditfield(app.RightPanel, 'numeric');
+            app.CorrentedeArmadurapu_q02.Editable = 'off';
+            app.CorrentedeArmadurapu_q02.HorizontalAlignment = 'center';
+            app.CorrentedeArmadurapu_q02.Position = [100 291 33 30];
+
+            % Create TensodeTerminalpuEditFieldLabel_2
+            app.TensodeTerminalpuEditFieldLabel_2 = uilabel(app.RightPanel);
+            app.TensodeTerminalpuEditFieldLabel_2.HorizontalAlignment = 'center';
+            app.TensodeTerminalpuEditFieldLabel_2.WordWrap = 'on';
+            app.TensodeTerminalpuEditFieldLabel_2.Position = [291 289 89 28];
+            app.TensodeTerminalpuEditFieldLabel_2.Text = {'Tensão Interna'; 'Ea (pu)'};
+
+            % Create TensodeTerminalpu_q02
+            app.TensodeTerminalpu_q02 = uieditfield(app.RightPanel, 'numeric');
+            app.TensodeTerminalpu_q02.Editable = 'off';
+            app.TensodeTerminalpu_q02.HorizontalAlignment = 'center';
+            app.TensodeTerminalpu_q02.Position = [379 291 33 30];
+
+            % Create CorrentedeCampopuEditField_2Label
+            app.CorrentedeCampopuEditField_2Label = uilabel(app.RightPanel);
+            app.CorrentedeCampopuEditField_2Label.HorizontalAlignment = 'center';
+            app.CorrentedeCampopuEditField_2Label.WordWrap = 'on';
+            app.CorrentedeCampopuEditField_2Label.Position = [145 287 89 28];
+            app.CorrentedeCampopuEditField_2Label.Text = {'Corrente de'; 'Campo (pu)'};
+
+            % Create CorrentedeCampopu_q02
+            app.CorrentedeCampopu_q02 = uieditfield(app.RightPanel, 'numeric');
+            app.CorrentedeCampopu_q02.Editable = 'off';
+            app.CorrentedeCampopu_q02.HorizontalAlignment = 'center';
+            app.CorrentedeCampopu_q02.Position = [233 289 33 30];
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = interface_final_G05_exported
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
+##### SOURCE END #####
+--></body></html>
